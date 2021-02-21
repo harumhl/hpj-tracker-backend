@@ -10,4 +10,4 @@ curl -i --user <username>:<password> http://localhost:8080
 http://localhost:8080/swagger-ui.html
 
 ### To deploy to Heroku
-https://dashboard.heroku.com/apps/hpj-tracker/deploy/github
+'git push heroku main'
