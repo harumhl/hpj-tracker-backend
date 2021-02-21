@@ -1,5 +1,6 @@
 package com.example.hpjtrackerbackend.controller;
 
+import com.example.hpjtrackerbackend.HpjException;
 import com.example.hpjtrackerbackend.dto.Category;
 import com.example.hpjtrackerbackend.service.CategoryService;
 import com.example.hpjtrackerbackend.service.TaskService;
@@ -30,12 +31,12 @@ public class CategoryController {
     }
 
     @PostMapping("")
-    public Category postCategory(@RequestBody Category category) throws Exception {
+    public Category postCategory(@RequestBody Category category) throws HpjException {
         return categoryService.postPutCategory(category, RequestMethod.POST);
     }
 
     @PutMapping("")
-    public Category putCategory(@RequestBody Category category) throws Exception {
+    public Category putCategory(@RequestBody Category category) throws HpjException {
         return categoryService.postPutCategory(category, RequestMethod.PUT);
     }
 }

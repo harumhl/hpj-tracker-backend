@@ -1,5 +1,6 @@
 package com.example.hpjtrackerbackend.controller;
 
+import com.example.hpjtrackerbackend.HpjException;
 import com.example.hpjtrackerbackend.dto.Entry;
 import com.example.hpjtrackerbackend.dto.EntryView;
 import com.example.hpjtrackerbackend.service.EntryService;
@@ -36,12 +37,12 @@ public class EntryController {
     }
 
     @PostMapping("")
-    public Entry postEntry(@RequestBody Entry entry) throws Exception {
+    public Entry postEntry(@RequestBody Entry entry) throws HpjException {
         return entryService.postPutEntry(entry, RequestMethod.POST);
     }
 
     @PutMapping("")
-    public Entry putEntry(@RequestBody Entry entry) throws Exception {
+    public Entry putEntry(@RequestBody Entry entry) throws HpjException {
         return entryService.postPutEntry(entry, RequestMethod.PUT);
     } // todo putEntriesOfToday()?
 

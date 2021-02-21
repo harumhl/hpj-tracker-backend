@@ -1,5 +1,6 @@
 package com.example.hpjtrackerbackend.service;
 
+import com.example.hpjtrackerbackend.HpjException;
 import com.example.hpjtrackerbackend.dto.Category;
 import com.example.hpjtrackerbackend.repository.CategoryRepository;
 import com.example.hpjtrackerbackend.util.Util;
@@ -25,11 +26,8 @@ public class CategoryService {
         return categoryRepository.findAll();
     }
 
-    public Category postPutCategory(Category category, RequestMethod requestMethod) throws Exception {
-        util.validateForPostAndPut(
-                Collections.singletonList(categoryRepository.findAllByName(category.getName())),
-                requestMethod
-        );
+    public Category postPutCategory(Category category, RequestMethod requestMethod) throws HpjException {
+        util.validateForPostAndPut(categoryRepository.findAllByName(category.getName()).size(), requestMethod);
 
         return categoryRepository.save(category);
     }

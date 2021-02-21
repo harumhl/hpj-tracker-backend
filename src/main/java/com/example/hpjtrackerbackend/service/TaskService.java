@@ -1,5 +1,6 @@
 package com.example.hpjtrackerbackend.service;
 
+import com.example.hpjtrackerbackend.HpjException;
 import com.example.hpjtrackerbackend.dto.Task;
 import com.example.hpjtrackerbackend.dto.TaskView;
 import com.example.hpjtrackerbackend.repository.TaskRepository;
@@ -29,11 +30,8 @@ public class TaskService {
         return taskViewRepository.findAll();
     }
 
-    public Task postPutTask(Task task, RequestMethod requestMethod) throws Exception {
-        util.validateForPostAndPut(
-                Collections.singletonList(taskRepository.findAllByName(task.getName())),
-                requestMethod
-        );
+    public Task postPutTask(Task task, RequestMethod requestMethod) throws HpjException {
+        util.validateForPostAndPut(taskRepository.findAllByName(task.getName()).size(), requestMethod);
 
         return taskRepository.save(task);
     }

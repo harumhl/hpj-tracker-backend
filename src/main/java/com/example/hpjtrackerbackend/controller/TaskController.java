@@ -1,5 +1,6 @@
 package com.example.hpjtrackerbackend.controller;
 
+import com.example.hpjtrackerbackend.HpjException;
 import com.example.hpjtrackerbackend.dto.Task;
 import com.example.hpjtrackerbackend.dto.TaskView;
 import com.example.hpjtrackerbackend.service.TaskService;
@@ -30,12 +31,12 @@ public class TaskController {
     }
 
     @PostMapping("")
-    public Task postTask(@RequestBody Task task) throws Exception {
+    public Task postTask(@RequestBody Task task) throws HpjException {
         return taskService.postPutTask(task, RequestMethod.POST);
     }
 
     @PutMapping("")
-    public Task putTask(@RequestBody Task task) throws Exception {
+    public Task putTask(@RequestBody Task task) throws HpjException {
         return taskService.postPutTask(task, RequestMethod.PUT);
     }
 }

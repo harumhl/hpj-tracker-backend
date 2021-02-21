@@ -1,5 +1,6 @@
 package com.example.hpjtrackerbackend.service;
 
+import com.example.hpjtrackerbackend.HpjException;
 import com.example.hpjtrackerbackend.dto.Entry;
 import com.example.hpjtrackerbackend.dto.EntryView;
 import com.example.hpjtrackerbackend.dto.Task;
@@ -41,11 +42,8 @@ public class EntryService {
         return entryViewRepository.findAllByDoneDate(util.getToday());
     }
 
-    public Entry postPutEntry(Entry entry, RequestMethod requestMethod) throws Exception {
-        util.validateForPostAndPut(
-                Collections.singletonList(entryRepository.findAllByName(entry.getName())),
-                requestMethod
-        );
+    public Entry postPutEntry(Entry entry, RequestMethod requestMethod) throws HpjException {
+        util.validateForPostAndPut(entryRepository.findAllByName(entry.getName()).size(), requestMethod);
 
         return entryRepository.save(entry);
     }
