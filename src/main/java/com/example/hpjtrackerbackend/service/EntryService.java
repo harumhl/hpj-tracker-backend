@@ -2,12 +2,9 @@ package com.example.hpjtrackerbackend.service;
 
 import com.example.hpjtrackerbackend.HpjException;
 import com.example.hpjtrackerbackend.dto.Entry;
-import com.example.hpjtrackerbackend.dto.EntryView;
 import com.example.hpjtrackerbackend.dto.Task;
 import com.example.hpjtrackerbackend.repository.EntryRepository;
-import com.example.hpjtrackerbackend.repository.EntryViewRepository;
 import com.example.hpjtrackerbackend.repository.TaskRepository;
-import com.example.hpjtrackerbackend.repository.TaskViewRepository;
 import com.example.hpjtrackerbackend.util.Util;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -26,20 +23,16 @@ public class EntryService {
     @NonNull
     private final TaskRepository taskRepository;
     @NonNull
-    private final TaskViewRepository taskViewRepository;
-    @NonNull
     private final EntryRepository entryRepository;
-    @NonNull
-    private final EntryViewRepository entryViewRepository;
 
     private final Util util = new Util();
 
-    public List<EntryView> getEntries() {
-        return entryViewRepository.findAll();
+    public List<Entry> getEntries() {
+        return entryRepository.findAll();
     }
 
-    public List<EntryView> getEntriesOfToday() {
-        return entryViewRepository.findAllByDoneDate(util.getToday());
+    public List<Entry> getEntriesOfToday() {
+        return entryRepository.findAllByDoneDate(util.getToday());
     }
 
     public Entry postPutEntry(Entry entry, RequestMethod requestMethod) throws HpjException {

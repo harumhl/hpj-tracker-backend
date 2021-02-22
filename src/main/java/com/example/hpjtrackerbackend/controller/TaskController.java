@@ -2,7 +2,6 @@ package com.example.hpjtrackerbackend.controller;
 
 import com.example.hpjtrackerbackend.HpjException;
 import com.example.hpjtrackerbackend.dto.Task;
-import com.example.hpjtrackerbackend.dto.TaskView;
 import com.example.hpjtrackerbackend.service.TaskService;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -26,7 +25,7 @@ public class TaskController {
     private final TaskService taskService;
 
     @GetMapping("")
-    public List<TaskView> getTasks() {
+    public List<Task> getTasks() {
         return taskService.getTasks();
     }
 

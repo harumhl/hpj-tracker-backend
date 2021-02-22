@@ -7,22 +7,27 @@ import org.hibernate.annotations.TypeDef;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import java.util.List;
 
 @Entity
-@Table(name="task")
+@Table(name = "task")
 @TypeDef(name = "list-array", typeClass = ListArrayType.class)
 @Data
 public class Task {
     @Id
-    private long id;
+    @SequenceGenerator(name = "task_id_seq", sequenceName = "task_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "task_id_seq")
+    private Long id;
     private String name;
-    private boolean archived;
-    private int goalCount;
-    private int maxCount;
-    private double countToComparableUnit;
+    private Boolean archived;
+    private Integer goalCount;
+    private Integer maxCount;
+    private Double countToComparableUnit;
     private String unit;
 
     @Type(type = "list-array")

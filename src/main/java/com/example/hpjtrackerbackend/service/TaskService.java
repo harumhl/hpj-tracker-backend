@@ -2,9 +2,7 @@ package com.example.hpjtrackerbackend.service;
 
 import com.example.hpjtrackerbackend.HpjException;
 import com.example.hpjtrackerbackend.dto.Task;
-import com.example.hpjtrackerbackend.dto.TaskView;
 import com.example.hpjtrackerbackend.repository.TaskRepository;
-import com.example.hpjtrackerbackend.repository.TaskViewRepository;
 import com.example.hpjtrackerbackend.util.Util;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -21,13 +19,11 @@ public class TaskService {
 
     @NonNull
     private final TaskRepository taskRepository;
-    @NonNull
-    private final TaskViewRepository taskViewRepository;
 
     private final Util util = new Util();
 
-    public List<TaskView> getTasks() {
-        return taskViewRepository.findAll();
+    public List<Task> getTasks() {
+        return taskRepository.findAll();
     }
 
     public Task postPutTask(Task task, RequestMethod requestMethod) throws HpjException {

@@ -7,26 +7,31 @@ import org.hibernate.annotations.TypeDef;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import java.time.LocalDate;
 import java.util.Map;
 
 @Entity
-@Table(name="entry")
+@Table(name = "entry")
 @TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)
 @Data
 public class Entry {
     @Id
-    private long id;
-    private long taskId;
+    @SequenceGenerator(name = "entry_id_seq", sequenceName = "entry_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "entry_id_seq")
+    private Long id;
+    private Long taskId;
     private LocalDate doneDate;
     private String name;
-    private int count;
-    private boolean hide;
-    private int goalCount;
-    private int maxCount;
-    private double countToComparableUnit;
+    private Integer count;
+    private Boolean hide;
+    private Integer goalCount;
+    private Integer maxCount;
+    private Double countToComparableUnit;
 
     @Type(type = "jsonb")
     @Column(columnDefinition = "jsonb")

@@ -2,7 +2,6 @@ package com.example.hpjtrackerbackend.controller;
 
 import com.example.hpjtrackerbackend.HpjException;
 import com.example.hpjtrackerbackend.dto.Entry;
-import com.example.hpjtrackerbackend.dto.EntryView;
 import com.example.hpjtrackerbackend.service.EntryService;
 import com.example.hpjtrackerbackend.service.TaskService;
 import lombok.NonNull;
@@ -27,12 +26,12 @@ public class EntryController {
     private final EntryService entryService;
 
     @GetMapping("")
-    public List<EntryView> getEntries() {
+    public List<Entry> getEntries() {
         return entryService.getEntries();
     }
 
     @GetMapping("/today")
-    public List<EntryView> getEntriesOfToday() {
+    public List<Entry> getEntriesOfToday() {
         return entryService.getEntriesOfToday();
     }
 
