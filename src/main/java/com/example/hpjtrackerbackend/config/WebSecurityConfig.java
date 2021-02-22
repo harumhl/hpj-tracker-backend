@@ -34,7 +34,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
     protected void configure(HttpSecurity http) throws Exception{
         http.authorizeRequests().anyRequest().authenticated().and().httpBasic()
             .and()
-            .cors().and().csrf().disable()
+            .cors().disable()
+            .csrf().disable()
             .requiresChannel()
             .requestMatchers(r -> r.getHeader("X-Forwarded-Proto") != null)
             .requiresSecure();
