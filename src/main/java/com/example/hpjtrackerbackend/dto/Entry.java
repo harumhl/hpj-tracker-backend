@@ -34,7 +34,7 @@ public class Entry {
     private Boolean hide;
     private Integer goalCount;
     private Integer maxCount;
-    private Double countToComparableUnit;
+    private Double multiplier;
 
     @Type(type = "jsonb")
     @Column(columnDefinition = "jsonb")

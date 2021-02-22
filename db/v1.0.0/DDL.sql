@@ -19,7 +19,7 @@ CREATE TABLE public.task
     archived boolean NOT NULL,
     goal_count integer NOT NULL,
     max_count integer NOT NULL,
-    count_to_comparable_unit double precision NOT NULL,
+    multiplier double precision NOT NULL,
     unit text COLLATE pg_catalog."default" NOT NULL,
     expected_times_of_completion text[] COLLATE pg_catalog."default" NOT NULL,
     details text COLLATE pg_catalog."default",
@@ -43,7 +43,7 @@ CREATE TABLE public.entry
     hide boolean NOT NULL,
     goal_count integer NOT NULL,
     max_count integer NOT NULL,
-    count_to_comparable_unit double precision NOT NULL,
+    multiplier double precision NOT NULL,
     details jsonb,
     CONSTRAINT entry_pkey PRIMARY KEY (id),
     CONSTRAINT fk_entry_task_id_task_id FOREIGN KEY (task_id)
@@ -75,7 +75,7 @@ ALTER TABLE public.entry_with_category_name_and_goal_name OWNER TO hwmvazhkynagf
 CREATE OR REPLACE VIEW public.completion_units_per_category AS
     SELECT calculated.category_name, SUM(calculated.percent) AS percent_sum, calculated.goal_in_comparable_unit, SUM(calculated.percent) / calculated.goal_in_comparable_unit * 100 AS completion_percent
     FROM (
-        SELECT *, CAST(count AS DOUBLE PRECISION) / e.goal_count * e.count_to_comparable_unit AS percent
+        SELECT *, CAST(count AS DOUBLE PRECISION) / e.goal_count * e.multiplier AS percent
         FROM public.entry_with_category_name_and_goal_name e
 		LEFT JOIN category
 		ON category.name = e.category_name

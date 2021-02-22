@@ -31,7 +31,10 @@ public class Task {
     private Boolean archived;
     private Integer goalCount;
     private Integer maxCount;
-    private Double countToComparableUnit;
+    /*  multiplier shows how much a task is worth. So it allows tasks to be comparable.
+        e.g. 5 min done / 10 min goal * 2.0 multiplier = worth 1 comparable unit
+        e.g. 10 min done / 5 min goal * 0.5 multiplier = worth 1 comparable unit */
+    private Double multiplier;
     private String unit;
 
     @Type(type = "list-array")

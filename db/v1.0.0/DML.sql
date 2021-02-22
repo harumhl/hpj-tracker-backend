@@ -8,8 +8,8 @@ INSERT INTO public.category(name, goal_in_comparable_unit) VALUES ('Interpersona
 INSERT INTO public.category(name, goal_in_comparable_unit) VALUES ('Programming/AI', 10);-- id = 8
 INSERT INTO public.category(name, goal_in_comparable_unit) VALUES ('Workout', 10);       -- id = 9
 
-INSERT INTO public.task(category_id, name, archived, goal_count, max_count, count_to_comparable_unit, unit, expected_times_of_completion)
+INSERT INTO public.task(category_id, name, archived, goal_count, max_count, multiplier, unit, expected_times_of_completion)
 	VALUES (2, 'Brush teeth', false, 3, 3, 1, 'count', array['07:00']);
 
--- INSERT INTO public.entry(done_date, task_id, name, count, hide, goal_count, max_count, count_to_comparable_unit)
--- VALUES ('2021-02-20', 1, 'Brush teeth', 1, false, 3, 3, 1);
+-- INSERT INTO public.entry(done_date, task_id, name, count, hide, goal_count, max_count, multiplier)
+-- VALUES ('2021-02-20', 1, 'Brush teeth', 1, false, 3, 3, 1.0);

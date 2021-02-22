@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -42,6 +41,7 @@ public class EntryService {
     }
 
     public List<Entry> postEntriesOfToday() {
+        // TODO don't overwrite if some already exist
         List<Task> tasksOfToday = taskRepository.findAll();
         List<Entry> entriesOfToday = new ArrayList<>();
         for (Task taskOfToday : tasksOfToday) {
@@ -52,7 +52,8 @@ public class EntryService {
             entryOfToday.setHide(false);
             entryOfToday.setGoalCount(taskOfToday.getGoalCount());
             entryOfToday.setMaxCount(taskOfToday.getMaxCount());
-            entryOfToday.setCountToComparableUnit(taskOfToday.getCountToComparableUnit());
+            entryOfToday.setMultiplier(taskOfToday.getMultiplier());
+            entryOfToday.setTask(taskOfToday);
             entriesOfToday.add(entryOfToday);
         }
         return entryRepository.saveAll(entriesOfToday);
