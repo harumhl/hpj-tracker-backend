@@ -1,7 +1,7 @@
 -- Table: public.category
 CREATE TABLE public.category
 (
-    id bigint NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 9223372036854775807 CACHE 1 ),
+    id SERIAL NOT NULL,
     name text COLLATE pg_catalog."default" NOT NULL,
     color text COLLATE pg_catalog."default",
     goal_in_comparable_unit integer,
@@ -13,7 +13,7 @@ ALTER TABLE public.category OWNER to hwmvazhkynagfn;
 -- Table: public.task
 CREATE TABLE public.task
 (
-    id bigint NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 9223372036854775807 CACHE 1 ),
+    id SERIAL NOT NULL,
     category_id bigint NOT NULL,
     name text COLLATE pg_catalog."default" NOT NULL,
     archived boolean NOT NULL,
@@ -35,7 +35,7 @@ ALTER TABLE public.task OWNER to hwmvazhkynagfn;
 -- Table: public.entry
 CREATE TABLE public.entry
 (
-    id bigint NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 9223372036854775807 CACHE 1 ),
+    id SERIAL NOT NULL,
     done_date date NOT NULL,
     task_id bigint NOT NULL,
     name text COLLATE pg_catalog."default" NOT NULL,
