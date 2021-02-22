@@ -2,7 +2,7 @@
 CREATE TABLE public.category
 (
     id SERIAL NOT NULL,
-    name text COLLATE pg_catalog."default" NOT NULL,
+    name text COLLATE pg_catalog."default" UNIQUE NOT NULL,
     color text COLLATE pg_catalog."default",
     goal_in_comparable_unit integer,
     CONSTRAINT category_pkey PRIMARY KEY (id)
@@ -15,7 +15,7 @@ CREATE TABLE public.task
 (
     id SERIAL NOT NULL,
     category_id bigint NOT NULL,
-    name text COLLATE pg_catalog."default" NOT NULL,
+    name text COLLATE pg_catalog."default" UNIQUE NOT NULL,
     archived boolean NOT NULL,
     goal_count integer NOT NULL,
     max_count integer NOT NULL,
@@ -72,10 +72,12 @@ CREATE OR REPLACE VIEW public.entry_with_category_name_and_goal_name AS
 ALTER TABLE public.entry_with_category_name_and_goal_name OWNER TO hwmvazhkynagfn;
 
 -- View: public.completion_units_per_category
+-- TODO per day
+-- TODO always show all categories
 CREATE OR REPLACE VIEW public.completion_units_per_category AS
     SELECT calculated.category_name, SUM(calculated.percent) AS percent_sum, calculated.goal_in_comparable_unit, SUM(calculated.percent) / calculated.goal_in_comparable_unit * 100 AS completion_percent
     FROM (
-        SELECT *, CAST(count AS DOUBLE PRECISION) / e.goal_count * e.multiplier AS percent
+        SELECT *, CAST(GREATEST(count, max_count) AS DOUBLE PRECISION) / e.goal_count * e.multiplier AS percent
         FROM public.entry_with_category_name_and_goal_name e
 		LEFT JOIN category
 		ON category.name = e.category_name
