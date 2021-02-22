@@ -72,16 +72,15 @@ CREATE OR REPLACE VIEW public.entry_with_category_name_and_goal_name AS
 ALTER TABLE public.entry_with_category_name_and_goal_name OWNER TO hwmvazhkynagfn;
 
 -- View: public.completion_units_per_category
--- TODO per day
 -- TODO always show all categories
 CREATE OR REPLACE VIEW public.completion_units_per_category AS
-    SELECT calculated.category_name, SUM(calculated.percent) AS percent_sum, calculated.goal_in_comparable_unit, SUM(calculated.percent) / calculated.goal_in_comparable_unit * 100 AS completion_percent
+    SELECT calculated.done_date, calculated.category_name, SUM(calculated.percent) AS percent_sum, calculated.goal_in_comparable_unit, SUM(calculated.percent) / calculated.goal_in_comparable_unit * 100 AS completion_percent
     FROM (
-        SELECT *, CAST(GREATEST(count, max_count) AS DOUBLE PRECISION) / e.goal_count * e.multiplier AS percent
+        SELECT *, CAST(LEAST(count, max_count) AS DOUBLE PRECISION) / e.goal_count * e.multiplier AS percent
         FROM public.entry_with_category_name_and_goal_name e
 		LEFT JOIN category
 		ON category.name = e.category_name
     ) calculated
-    GROUP BY calculated.category_name, calculated.goal_in_comparable_unit;
+    GROUP BY calculated.done_date, calculated.category_name, calculated.goal_in_comparable_unit;
 
 ALTER TABLE public.completion_units_per_category OWNER TO hwmvazhkynagfn;
