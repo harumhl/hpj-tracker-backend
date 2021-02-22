@@ -23,4 +23,9 @@ public class CompletionUnitController {
     public List<CompletionUnitsPerCategory> getCompletionUnitsPerCategory() {
         return completionUnitService.getCompletionUnitsPerCategory();
     }
+
+    @GetMapping("/today")
+    public List<CompletionUnitsPerCategory> getCompletionUnitsPerCategoryOfToday() {
+        return completionUnitService.getCompletionUnitsPerCategoryOfToday();
+    }
 }
