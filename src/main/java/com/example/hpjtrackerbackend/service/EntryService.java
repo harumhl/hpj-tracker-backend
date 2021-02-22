@@ -41,10 +41,15 @@ public class EntryService {
     }
 
     public List<Entry> postEntriesOfToday() {
-        // TODO don't overwrite if some already exist
         List<Task> tasksOfToday = taskRepository.findAll();
+        List<Entry> existingEntriesOfToday = getEntriesOfToday();
         List<Entry> entriesOfToday = new ArrayList<>();
         for (Task taskOfToday : tasksOfToday) {
+            // Skip if it already exists in the db
+            if (existingEntriesOfToday.stream().anyMatch(e -> e.getName().equals(taskOfToday.getName()))) {
+                continue;
+            }
+
             Entry entryOfToday = new Entry();
             entryOfToday.setDoneDate(util.getToday());
             entryOfToday.setName(taskOfToday.getName());
