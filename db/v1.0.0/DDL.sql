@@ -39,7 +39,7 @@ CREATE TABLE public.entry
     done_date date NOT NULL,
     task_id bigint NOT NULL,
     name text COLLATE pg_catalog."default" NOT NULL,
-    count integer NOT NULL,
+    count double precision NOT NULL,
     hide boolean NOT NULL,
     goal_count integer NOT NULL,
     max_count integer NOT NULL,
