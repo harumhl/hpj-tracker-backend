@@ -53,7 +53,7 @@ public class EntryService {
             Entry entryOfToday = new Entry();
             entryOfToday.setDoneDate(util.getToday());
             entryOfToday.setName(taskOfToday.getName());
-            entryOfToday.setCount(0);
+            entryOfToday.setCount((double) 0);
             entryOfToday.setHide(false);
             entryOfToday.setGoalCount(taskOfToday.getGoalCount());
             entryOfToday.setMaxCount(taskOfToday.getMaxCount());
