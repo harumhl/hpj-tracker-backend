@@ -30,7 +30,7 @@ public class Entry {
 
     private LocalDate doneDate;
     private String name;
-    private Integer count;
+    private Double count;
     private Boolean hide;
     private Integer goalCount;
     private Integer maxCount;
