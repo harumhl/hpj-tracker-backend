@@ -1,9 +1,8 @@
 package com.example.hpjtrackerbackend.controller;
 
 import com.example.hpjtrackerbackend.HpjException;
-import com.example.hpjtrackerbackend.dto.Category;
+import com.example.hpjtrackerbackend.dto.response.Category;
 import com.example.hpjtrackerbackend.service.CategoryService;
-import com.example.hpjtrackerbackend.service.TaskService;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;

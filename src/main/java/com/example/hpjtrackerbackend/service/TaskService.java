@@ -1,7 +1,7 @@
 package com.example.hpjtrackerbackend.service;
 
 import com.example.hpjtrackerbackend.HpjException;
-import com.example.hpjtrackerbackend.dto.Task;
+import com.example.hpjtrackerbackend.dto.response.Task;
 import com.example.hpjtrackerbackend.repository.TaskRepository;
 import com.example.hpjtrackerbackend.util.Util;
 import lombok.NonNull;

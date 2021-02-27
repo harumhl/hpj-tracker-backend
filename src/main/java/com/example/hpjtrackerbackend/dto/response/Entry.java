@@ -1,4 +1,4 @@
-package com.example.hpjtrackerbackend.dto;
+package com.example.hpjtrackerbackend.dto.response;
 
 import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
 import lombok.Data;

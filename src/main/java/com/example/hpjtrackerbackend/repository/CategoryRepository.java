@@ -1,6 +1,6 @@
 package com.example.hpjtrackerbackend.repository;
 
-import com.example.hpjtrackerbackend.dto.Category;
+import com.example.hpjtrackerbackend.dto.response.Category;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

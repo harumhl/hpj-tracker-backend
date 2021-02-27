@@ -1,4 +1,4 @@
-package com.example.hpjtrackerbackend.dto;
+package com.example.hpjtrackerbackend.dto.response;
 
 import com.example.hpjtrackerbackend.dto.helper.CompletionUnitsPerCategoryId;
 import lombok.Data;

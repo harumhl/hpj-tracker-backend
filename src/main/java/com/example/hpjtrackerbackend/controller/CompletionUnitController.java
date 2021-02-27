@@ -1,6 +1,6 @@
 package com.example.hpjtrackerbackend.controller;
 
-import com.example.hpjtrackerbackend.dto.CompletionUnitsPerCategory;
+import com.example.hpjtrackerbackend.dto.response.CompletionUnitsPerCategory;
 import com.example.hpjtrackerbackend.service.CompletionUnitService;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;

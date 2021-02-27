@@ -1,8 +1,8 @@
 package com.example.hpjtrackerbackend.service;
 
 import com.example.hpjtrackerbackend.HpjException;
-import com.example.hpjtrackerbackend.dto.Entry;
-import com.example.hpjtrackerbackend.dto.Task;
+import com.example.hpjtrackerbackend.dto.response.Entry;
+import com.example.hpjtrackerbackend.dto.response.Task;
 import com.example.hpjtrackerbackend.repository.EntryRepository;
 import com.example.hpjtrackerbackend.repository.TaskRepository;
 import com.example.hpjtrackerbackend.util.Util;
