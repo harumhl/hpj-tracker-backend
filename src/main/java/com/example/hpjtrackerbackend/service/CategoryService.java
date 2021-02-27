@@ -1,7 +1,7 @@
 package com.example.hpjtrackerbackend.service;
 
 import com.example.hpjtrackerbackend.HpjException;
-import com.example.hpjtrackerbackend.dto.response.CategoryResponse;
+import com.example.hpjtrackerbackend.dto.request.Category;
 import com.example.hpjtrackerbackend.repository.CategoryRepository;
 import com.example.hpjtrackerbackend.util.Util;
 import lombok.NonNull;
@@ -21,13 +21,13 @@ public class CategoryService {
 
     private final Util util = new Util();
 
-    public List<CategoryResponse> getCategories() {
+    public List<Category> getCategories() {
         return categoryRepository.findAll();
     }
 
-    public CategoryResponse postPutCategory(CategoryResponse categoryResponse, RequestMethod requestMethod) throws HpjException {
-        util.validateForPostAndPut(categoryRepository.findAllByName(categoryResponse.getName()).size(), requestMethod);
+    public Category postPutCategory(Category category, RequestMethod requestMethod) throws HpjException {
+        util.validateForPostAndPut(categoryRepository.findAllByName(category.getName()).size(), requestMethod);
 
-        return categoryRepository.save(categoryResponse);
+        return categoryRepository.save(category);
     }
 }

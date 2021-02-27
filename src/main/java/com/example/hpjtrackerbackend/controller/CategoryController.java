@@ -1,7 +1,7 @@
 package com.example.hpjtrackerbackend.controller;
 
 import com.example.hpjtrackerbackend.HpjException;
-import com.example.hpjtrackerbackend.dto.response.CategoryResponse;
+import com.example.hpjtrackerbackend.dto.request.Category;
 import com.example.hpjtrackerbackend.service.CategoryService;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -25,17 +25,17 @@ public class CategoryController {
     private final CategoryService categoryService;
 
     @GetMapping("")
-    public List<CategoryResponse> getCategories() {
+    public List<Category> getCategories() {
         return categoryService.getCategories();
     }
 
     @PostMapping("")
-    public CategoryResponse postCategory(@RequestBody CategoryResponse categoryResponse) throws HpjException {
-        return categoryService.postPutCategory(categoryResponse, RequestMethod.POST);
+    public Category postCategory(@RequestBody Category category) throws HpjException {
+        return categoryService.postPutCategory(category, RequestMethod.POST);
     }
 
     @PutMapping("")
-    public CategoryResponse putCategory(@RequestBody CategoryResponse categoryResponse) throws HpjException {
-        return categoryService.postPutCategory(categoryResponse, RequestMethod.PUT);
+    public Category putCategory(@RequestBody Category category) throws HpjException {
+        return categoryService.postPutCategory(category, RequestMethod.PUT);
     }
 }
