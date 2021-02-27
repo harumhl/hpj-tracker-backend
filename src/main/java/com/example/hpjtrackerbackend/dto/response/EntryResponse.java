@@ -42,5 +42,5 @@ public class EntryResponse {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "task_id", referencedColumnName = "id")
-    private TaskResponse taskResponse;
+    private TaskResponse task;
 }

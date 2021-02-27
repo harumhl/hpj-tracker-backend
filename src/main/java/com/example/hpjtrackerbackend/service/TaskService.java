@@ -1,8 +1,10 @@
 package com.example.hpjtrackerbackend.service;
 
 import com.example.hpjtrackerbackend.HpjException;
+import com.example.hpjtrackerbackend.dto.request.Task;
 import com.example.hpjtrackerbackend.dto.response.TaskResponse;
 import com.example.hpjtrackerbackend.repository.TaskRepository;
+import com.example.hpjtrackerbackend.repository.TaskResponseRepository;
 import com.example.hpjtrackerbackend.util.Util;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -18,16 +20,18 @@ public class TaskService {
 
     @NonNull
     private final TaskRepository taskRepository;
+    @NonNull
+    private final TaskResponseRepository taskResponseRepository;
 
     private final Util util = new Util();
 
     public List<TaskResponse> getTasks() {
-        return taskRepository.findAll();
+        return taskResponseRepository.findAll();
     }
 
-    public TaskResponse postPutTask(TaskResponse taskResponse, RequestMethod requestMethod) throws HpjException {
-        util.validateForPostAndPut(taskRepository.findAllByName(taskResponse.getName()).size(), requestMethod);
-
-        return taskRepository.save(taskResponse);
+    public TaskResponse postPutTask(Task task, RequestMethod requestMethod) throws HpjException {
+        util.validateForPostAndPut(taskResponseRepository.findAllByName(task.getName()).size(), requestMethod);
+        task = taskRepository.saveAndFlush(task);
+        return taskResponseRepository.findById(task.getId()).get();
     }
 }

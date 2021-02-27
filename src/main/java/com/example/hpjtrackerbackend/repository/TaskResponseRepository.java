@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface TaskRepository extends JpaRepository<TaskResponse, Long> {
+public interface TaskResponseRepository extends JpaRepository<TaskResponse, Long> {
     List<TaskResponse> findAllByName(String name);
 }

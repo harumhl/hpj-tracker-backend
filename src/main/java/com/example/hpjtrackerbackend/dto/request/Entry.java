@@ -40,5 +40,6 @@ public class Entry {
     @Column(columnDefinition = "jsonb")
     private Map<String, Object> details; // TODO maybe Map<String, String>
 
+    @Column(name = "task_id")
     private Long taskId;
 }

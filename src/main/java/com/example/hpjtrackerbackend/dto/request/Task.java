@@ -42,5 +42,6 @@ public class Task {
 
     private String details;
 
+    @Column(name = "category_id")
     private Long categoryId;
 }

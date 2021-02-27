@@ -1,10 +1,12 @@
 package com.example.hpjtrackerbackend.service;
 
 import com.example.hpjtrackerbackend.HpjException;
+import com.example.hpjtrackerbackend.dto.request.Entry;
 import com.example.hpjtrackerbackend.dto.response.EntryResponse;
 import com.example.hpjtrackerbackend.dto.response.TaskResponse;
 import com.example.hpjtrackerbackend.repository.EntryRepository;
-import com.example.hpjtrackerbackend.repository.TaskRepository;
+import com.example.hpjtrackerbackend.repository.EntryResponseRepository;
+import com.example.hpjtrackerbackend.repository.TaskResponseRepository;
 import com.example.hpjtrackerbackend.util.Util;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -14,43 +16,46 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class EntryService {
 
     @NonNull
-    private final TaskRepository taskRepository;
+    private final TaskResponseRepository taskResponseRepository;
     @NonNull
     private final EntryRepository entryRepository;
+    @NonNull
+    private final EntryResponseRepository entryResponseRepository;
 
     private final Util util = new Util();
 
     public List<EntryResponse> getEntries() {
-        return entryRepository.findAll();
+        return entryResponseRepository.findAll();
     }
 
     public List<EntryResponse> getEntriesOfToday() {
-        return entryRepository.findAllByDoneDate(util.getToday());
+        return entryResponseRepository.findAllByDoneDate(util.getToday());
     }
 
-    public EntryResponse postPutEntry(EntryResponse entryResponse, RequestMethod requestMethod) throws HpjException {
-        util.validateForPostAndPut(entryRepository.findAllByName(entryResponse.getName()).size(), requestMethod);
-
-        return entryRepository.save(entryResponse);
+    public EntryResponse postPutEntry(Entry entry, RequestMethod requestMethod) throws HpjException {
+        util.validateForPostAndPut(entryRepository.findAllByName(entry.getName()).size(), requestMethod);
+        entry = entryRepository.save(entry);
+        return entryResponseRepository.findById(entry.getId()).get();
     }
 
     public List<EntryResponse> postEntriesOfToday() {
-        List<TaskResponse> tasksOfToday = taskRepository.findAll();
+        List<TaskResponse> tasksOfToday = taskResponseRepository.findAll();
         List<EntryResponse> existingEntriesOfToday = getEntriesOfToday();
-        List<EntryResponse> entriesOfToday = new ArrayList<>();
+        List<Entry> entriesOfToday = new ArrayList<>();
         for (TaskResponse taskResponseOfToday : tasksOfToday) {
             // Skip if it already exists in the db
             if (existingEntriesOfToday.stream().anyMatch(e -> e.getName().equals(taskResponseOfToday.getName()))) {
                 continue;
             }
 
-            EntryResponse entryResponseOfToday = new EntryResponse();
+            Entry entryResponseOfToday = new Entry();
             entryResponseOfToday.setDoneDate(util.getToday());
             entryResponseOfToday.setName(taskResponseOfToday.getName());
             entryResponseOfToday.setCount((double) 0);
@@ -58,9 +63,11 @@ public class EntryService {
             entryResponseOfToday.setGoalCount(taskResponseOfToday.getGoalCount());
             entryResponseOfToday.setMaxCount(taskResponseOfToday.getMaxCount());
             entryResponseOfToday.setMultiplier(taskResponseOfToday.getMultiplier());
-            entryResponseOfToday.setTaskResponse(taskResponseOfToday);
+            entryResponseOfToday.setTaskId(taskResponseOfToday.getId());
             entriesOfToday.add(entryResponseOfToday);
         }
-        return entryRepository.saveAll(entriesOfToday);
+        entriesOfToday = entryRepository.saveAll(entriesOfToday);
+        List<Long> ids = entriesOfToday.stream().map(Entry::getId).collect(Collectors.toList());
+        return entryResponseRepository.findAllById(ids);
     }
 }

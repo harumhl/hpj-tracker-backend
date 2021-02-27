@@ -1,5 +1,6 @@
 package com.example.hpjtrackerbackend.dto.response;
 
+import com.example.hpjtrackerbackend.dto.request.Category;
 import com.vladmihalcea.hibernate.type.array.ListArrayType;
 import lombok.Data;
 import org.hibernate.annotations.Type;
@@ -44,5 +45,5 @@ public class TaskResponse {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "category_id", referencedColumnName = "id")
-    private CategoryResponse categoryResponse;
+    private Category category;
 }
