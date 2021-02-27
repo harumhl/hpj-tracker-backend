@@ -11,6 +11,22 @@ INSERT INTO public.category(name, goal_in_comparable_unit) VALUES ('Workout', 10
 INSERT INTO public.task(category_id, name, archived, goal_count, max_count, multiplier, unit, expected_times_of_completion, details)
 VALUES
     -- Hazel
+    (1, 'Learn makeup', false, 10, 20, 1.0, 'minutes', array['08:00'], ''),
+    (1, 'Learn hair care', false, 10, 10, 1.0, 'minutes', array['08:00'], ''),
+    (1, 'Learn skin care', false, 10, 10, 1.0, 'minutes', array['08:00'], ''),
+    (1, 'Learn body care', false, 10, 10, 1.0, 'minutes', array['08:00'], ''),
+    (1, 'Practice makeup foundation', false, 5, 15, 1.0, 'minutes', array['08:00'], ''),
+    (1, 'Practice nose contour', false, 5, 10, 1.0, 'minutes', array['08:00'], ''),
+    (1, 'Practice chin contour', false, 5, 10, 1.0, 'minutes', array['08:00'], ''),
+    (1, 'Practice eyeshadow makeup', false, 5, 15, 1.0, 'minutes', array['08:00'], ''),
+    (1, 'Practice eyeliner makeup', false, 5, 10, 1.0, 'minutes', array['08:00'], ''),
+    (1, 'Practice eyelash makeup', false, 5, 10, 1.0, 'minutes', array['08:00'], ''),
+    (1, 'Remove makeup', false, 5, 5, 1.0, 'minutes', array['08:00'], ''),
+    (1, 'Skin care after practice', false, 5, 5, 1.0, 'minutes', array['08:00'], ''),
+    (1, 'Voice practice', false, 5, 10, 1.0, 'minutes', array['08:00'], ''),
+    (1, 'Anal practice', false, 5, 15, 1.0, 'minutes', array['08:00'], ''),
+    (1, 'Chastity training', false, 5, 15, 1.0, 'minutes', array['08:00'], ''),
+    (1, 'Dress up', false, 30, 60, 1.0, 'minutes', array['08:00'], ''),
     -- Basic
     (2, 'Brush teeth', false, 3, 3, 1.0, 'count', array['07:35', '12:45', '18:50'], ''),
     (2, 'Chores', false, 10, 15, 2.0, 'minutes', array['10:00'], ''),
@@ -75,3 +91,4 @@ VALUES
 
 -- INSERT INTO public.entry(done_date, task_id, name, count, hide, goal_count, max_count, multiplier)
 -- VALUES ('2021-02-20', 1, 'Brush teeth', 1, false, 3, 3, 1.0);
+
