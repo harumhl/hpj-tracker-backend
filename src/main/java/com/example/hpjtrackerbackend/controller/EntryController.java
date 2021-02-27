@@ -1,7 +1,7 @@
 package com.example.hpjtrackerbackend.controller;
 
 import com.example.hpjtrackerbackend.HpjException;
-import com.example.hpjtrackerbackend.dto.response.Entry;
+import com.example.hpjtrackerbackend.dto.response.EntryResponse;
 import com.example.hpjtrackerbackend.service.EntryService;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -25,27 +25,27 @@ public class EntryController {
     private final EntryService entryService;
 
     @GetMapping("")
-    public List<Entry> getEntries() {
+    public List<EntryResponse> getEntries() {
         return entryService.getEntries();
     }
 
     @GetMapping("/today")
-    public List<Entry> getEntriesOfToday() {
+    public List<EntryResponse> getEntriesOfToday() {
         return entryService.getEntriesOfToday();
     }
 
     @PostMapping("")
-    public Entry postEntry(@RequestBody Entry entry) throws HpjException {
-        return entryService.postPutEntry(entry, RequestMethod.POST);
+    public EntryResponse postEntry(@RequestBody EntryResponse entryResponse) throws HpjException {
+        return entryService.postPutEntry(entryResponse, RequestMethod.POST);
     }
 
     @PutMapping("")
-    public Entry putEntry(@RequestBody Entry entry) throws HpjException {
-        return entryService.postPutEntry(entry, RequestMethod.PUT);
+    public EntryResponse putEntry(@RequestBody EntryResponse entryResponse) throws HpjException {
+        return entryService.postPutEntry(entryResponse, RequestMethod.PUT);
     } // todo putEntriesOfToday()?
 
     @PostMapping("/today")
-    public List<Entry> postEntriesOfToday() {
+    public List<EntryResponse> postEntriesOfToday() {
         return entryService.postEntriesOfToday();
     }
 }

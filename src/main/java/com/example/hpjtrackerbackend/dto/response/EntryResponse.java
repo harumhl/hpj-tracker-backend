@@ -22,7 +22,7 @@ import java.util.Map;
 @Table(name = "entry")
 @TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)
 @Data
-public class Entry {
+public class EntryResponse {
     @Id
     @SequenceGenerator(name = "entry_id_seq", sequenceName = "entry_id_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "entry_id_seq")
@@ -42,5 +42,5 @@ public class Entry {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "task_id", referencedColumnName = "id")
-    private Task task;
+    private TaskResponse taskResponse;
 }

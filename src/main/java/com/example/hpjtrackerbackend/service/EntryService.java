@@ -1,8 +1,8 @@
 package com.example.hpjtrackerbackend.service;
 
 import com.example.hpjtrackerbackend.HpjException;
-import com.example.hpjtrackerbackend.dto.response.Entry;
-import com.example.hpjtrackerbackend.dto.response.Task;
+import com.example.hpjtrackerbackend.dto.response.EntryResponse;
+import com.example.hpjtrackerbackend.dto.response.TaskResponse;
 import com.example.hpjtrackerbackend.repository.EntryRepository;
 import com.example.hpjtrackerbackend.repository.TaskRepository;
 import com.example.hpjtrackerbackend.util.Util;
@@ -26,40 +26,40 @@ public class EntryService {
 
     private final Util util = new Util();
 
-    public List<Entry> getEntries() {
+    public List<EntryResponse> getEntries() {
         return entryRepository.findAll();
     }
 
-    public List<Entry> getEntriesOfToday() {
+    public List<EntryResponse> getEntriesOfToday() {
         return entryRepository.findAllByDoneDate(util.getToday());
     }
 
-    public Entry postPutEntry(Entry entry, RequestMethod requestMethod) throws HpjException {
-        util.validateForPostAndPut(entryRepository.findAllByName(entry.getName()).size(), requestMethod);
+    public EntryResponse postPutEntry(EntryResponse entryResponse, RequestMethod requestMethod) throws HpjException {
+        util.validateForPostAndPut(entryRepository.findAllByName(entryResponse.getName()).size(), requestMethod);
 
-        return entryRepository.save(entry);
+        return entryRepository.save(entryResponse);
     }
 
-    public List<Entry> postEntriesOfToday() {
-        List<Task> tasksOfToday = taskRepository.findAll();
-        List<Entry> existingEntriesOfToday = getEntriesOfToday();
-        List<Entry> entriesOfToday = new ArrayList<>();
-        for (Task taskOfToday : tasksOfToday) {
+    public List<EntryResponse> postEntriesOfToday() {
+        List<TaskResponse> tasksOfToday = taskRepository.findAll();
+        List<EntryResponse> existingEntriesOfToday = getEntriesOfToday();
+        List<EntryResponse> entriesOfToday = new ArrayList<>();
+        for (TaskResponse taskResponseOfToday : tasksOfToday) {
             // Skip if it already exists in the db
-            if (existingEntriesOfToday.stream().anyMatch(e -> e.getName().equals(taskOfToday.getName()))) {
+            if (existingEntriesOfToday.stream().anyMatch(e -> e.getName().equals(taskResponseOfToday.getName()))) {
                 continue;
             }
 
-            Entry entryOfToday = new Entry();
-            entryOfToday.setDoneDate(util.getToday());
-            entryOfToday.setName(taskOfToday.getName());
-            entryOfToday.setCount((double) 0);
-            entryOfToday.setHide(false);
-            entryOfToday.setGoalCount(taskOfToday.getGoalCount());
-            entryOfToday.setMaxCount(taskOfToday.getMaxCount());
-            entryOfToday.setMultiplier(taskOfToday.getMultiplier());
-            entryOfToday.setTask(taskOfToday);
-            entriesOfToday.add(entryOfToday);
+            EntryResponse entryResponseOfToday = new EntryResponse();
+            entryResponseOfToday.setDoneDate(util.getToday());
+            entryResponseOfToday.setName(taskResponseOfToday.getName());
+            entryResponseOfToday.setCount((double) 0);
+            entryResponseOfToday.setHide(false);
+            entryResponseOfToday.setGoalCount(taskResponseOfToday.getGoalCount());
+            entryResponseOfToday.setMaxCount(taskResponseOfToday.getMaxCount());
+            entryResponseOfToday.setMultiplier(taskResponseOfToday.getMultiplier());
+            entryResponseOfToday.setTaskResponse(taskResponseOfToday);
+            entriesOfToday.add(entryResponseOfToday);
         }
         return entryRepository.saveAll(entriesOfToday);
     }

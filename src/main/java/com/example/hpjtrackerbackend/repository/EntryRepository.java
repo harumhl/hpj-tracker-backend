@@ -1,6 +1,6 @@
 package com.example.hpjtrackerbackend.repository;
 
-import com.example.hpjtrackerbackend.dto.response.Entry;
+import com.example.hpjtrackerbackend.dto.response.EntryResponse;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -8,7 +8,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Repository
-public interface EntryRepository extends JpaRepository<Entry, Long> {
-    List<Entry> findAllByDoneDate(LocalDate name);
-    List<Entry> findAllByName(String name);
+public interface EntryRepository extends JpaRepository<EntryResponse, Long> {
+    List<EntryResponse> findAllByDoneDate(LocalDate name);
+    List<EntryResponse> findAllByName(String name);
 }

@@ -1,8 +1,7 @@
-package com.example.hpjtrackerbackend.dto.response;
+package com.example.hpjtrackerbackend.dto.request;
 
 import lombok.Data;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;

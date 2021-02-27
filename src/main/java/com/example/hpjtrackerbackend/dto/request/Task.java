@@ -1,4 +1,4 @@
-package com.example.hpjtrackerbackend.dto.response;
+package com.example.hpjtrackerbackend.dto.request;
 
 import com.vladmihalcea.hibernate.type.array.ListArrayType;
 import lombok.Data;
@@ -42,7 +42,5 @@ public class Task {
 
     private String details;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "category_id", referencedColumnName = "id")
-    private Category category;
+    private Long categoryId;
 }
