@@ -1,4 +1,4 @@
--- Table: public.categoryResponse
+-- Table: public.category
 CREATE TABLE public.category
 (
     id SERIAL NOT NULL,
@@ -10,7 +10,7 @@ CREATE TABLE public.category
 
 ALTER TABLE public.category OWNER to hwmvazhkynagfn;
 
--- Table: public.taskResponse
+-- Table: public.task
 CREATE TABLE public.task
 (
     id SERIAL NOT NULL,
@@ -32,7 +32,7 @@ CREATE TABLE public.task
 
 ALTER TABLE public.task OWNER to hwmvazhkynagfn;
 
--- Table: public.entryResponse
+-- Table: public.entry
 CREATE TABLE public.entry
 (
     id SERIAL NOT NULL,
@@ -64,10 +64,10 @@ ALTER TABLE public.task_with_category_name OWNER TO hwmvazhkynagfn;
 
 -- View: public.entry_with_category_name_and_goal_name
 CREATE OR REPLACE VIEW public.entry_with_category_name_and_goal_name AS
-    SELECT entry.*, taskResponse.name AS task_name, taskResponse.category_name AS category_name
+    SELECT entry.*, task.name AS task_name, task.category_name AS category_name
     FROM entry
-    LEFT JOIN task_with_category_name taskResponse
-    ON taskResponse.id = entry.task_id;
+    LEFT JOIN task_with_category_name task
+    ON task.id = entry.task_id;
 
 ALTER TABLE public.entry_with_category_name_and_goal_name OWNER TO hwmvazhkynagfn;
 
