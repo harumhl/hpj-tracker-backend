@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.hibernate.annotations.Parameter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -32,8 +33,8 @@ public class EntryController {
         return entryService.getEntries();
     }
 
-    @GetMapping("/{date}}")
-    public List<EntryResponse> getEntriesOfADay(@RequestParam("date") String date) {
+    @GetMapping("/{date}")
+    public List<EntryResponse> getEntriesOfADay(@PathVariable String date) {
         return entryService.getEntriesOfADay(date);
     }
 
