@@ -22,4 +22,20 @@ public class Util {
         }
         return true;
     }
+
+    public LocalDate getDate(String date) {
+        if ("today".equals(date)) {
+            return today;
+        } else if (date.length() == 5) { // expecting MM-DD, assuming current year
+            return LocalDate.of(today.getYear(),
+                    Integer.parseInt(date.substring(0, 2)),
+                    Integer.parseInt(date.substring(3, 5)));
+        } else if (date.length() == 10) { // expecting YYYY-MM-DD
+            return LocalDate.of(Integer.parseInt(date.substring(0, 4)),
+                    Integer.parseInt(date.substring(5, 7)),
+                    Integer.parseInt(date.substring(8, 10)));
+        } else {
+            return null;
+        }
+    }
 }
