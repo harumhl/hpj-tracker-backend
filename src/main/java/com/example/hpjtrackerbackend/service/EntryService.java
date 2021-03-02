@@ -46,7 +46,7 @@ public class EntryService {
     }
 
     public List<EntryResponse> postEntriesOfToday() {
-        List<TaskResponse> tasksOfToday = taskResponseRepository.findAll();
+        List<TaskResponse> tasksOfToday = taskResponseRepository.findAllByArchivedIsFalse();
         List<EntryResponse> existingEntriesOfToday = getEntriesOfToday();
         List<Entry> entriesOfToday = new ArrayList<>();
         for (TaskResponse taskResponseOfToday : tasksOfToday) {

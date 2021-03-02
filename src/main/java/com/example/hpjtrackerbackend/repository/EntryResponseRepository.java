@@ -10,5 +10,4 @@ import java.util.List;
 @Repository
 public interface EntryResponseRepository extends JpaRepository<EntryResponse, Long> {
     List<EntryResponse> findAllByDoneDate(LocalDate name);
-    List<EntryResponse> findAllByName(String name);
 }

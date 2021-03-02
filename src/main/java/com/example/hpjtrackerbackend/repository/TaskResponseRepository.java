@@ -9,4 +9,5 @@ import java.util.List;
 @Repository
 public interface TaskResponseRepository extends JpaRepository<TaskResponse, Long> {
     List<TaskResponse> findAllByName(String name);
+    List<TaskResponse> findAllByArchivedIsFalse();
 }
