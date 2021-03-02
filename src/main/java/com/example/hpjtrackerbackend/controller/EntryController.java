@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -49,7 +48,7 @@ public class EntryController {
     } // todo putEntriesOfToday()?
 
     @PostMapping("/{date}")
-    public List<EntryResponse> postEntriesOfADay(@RequestParam("date") String date) {
+    public List<EntryResponse> postEntriesOfADay(@PathVariable String date) {
         return entryService.postEntriesOfADay(date);
     }
 }
