@@ -6,6 +6,7 @@ import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,8 +25,8 @@ public class CompletionUnitController {
         return completionUnitService.getCompletionUnitsPerCategory();
     }
 
-    @GetMapping("/today")
-    public List<CompletionUnitsPerCategory> getCompletionUnitsPerCategoryOfToday() {
-        return completionUnitService.getCompletionUnitsPerCategoryOfToday();
+    @GetMapping("/{date}")
+    public List<CompletionUnitsPerCategory> getCompletionUnitsPerCategoryOfADay(@PathVariable String date) {
+        return completionUnitService.getCompletionUnitsPerCategoryOfADay(date);
     }
 }

@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -23,7 +24,8 @@ public class CompletionUnitService {
         return completionUnitRepository.findAll();
     }
 
-    public List<CompletionUnitsPerCategory> getCompletionUnitsPerCategoryOfToday() {
-        return completionUnitRepository.findAllByDoneDate(util.getToday());
+    public List<CompletionUnitsPerCategory> getCompletionUnitsPerCategoryOfADay(String dateStr) {
+        LocalDate date = util.getDate(dateStr);
+        return completionUnitRepository.findAllByDoneDate(date);
     }
 }
