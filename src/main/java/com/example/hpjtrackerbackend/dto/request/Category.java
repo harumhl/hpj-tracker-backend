@@ -19,5 +19,5 @@ public class Category {
     private Long id;
     private String name;
     private String color;
-    private Integer goalInComparableUnit;
+    private Double goalInComparableUnit;
 }
